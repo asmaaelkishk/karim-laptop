@@ -1,0 +1,52 @@
+import os as _os
+CHROME = {'executable_path': _os.environ['CHROMIUM']} if _os.environ.get('CHROMIUM') else {}
+HERE = _os.path.dirname(_os.path.abspath(__file__))
+PAGE = 'file://' + _os.path.join(_os.path.dirname(HERE), 'public', 'index.html')
+import asyncio, sys
+from playwright.async_api import async_playwright
+F=sys.argv[1] if len(sys.argv) > 1 else PAGE
+async def main():
+  async with async_playwright() as p:
+    b=await p.chromium.launch(**CHROME)
+    pg=await b.new_page(viewport={'width':1440,'height':900}); errs=[]; res=[]
+    pg.on('pageerror',lambda e: errs.append((e.stack or str(e))[:300]))
+    def ok(name, cond): res.append(('PASS' if cond else 'FAIL')+' '+name)
+    await pg.goto(F); await pg.wait_for_timeout(500)
+    ok('P3 brief first', await pg.evaluate("!!document.querySelector('#modal [data-act=open-laptop]')"))
+    ok('P10 no rescue screen', await pg.evaluate("!document.getElementById('rescue')"))
+    await pg.click('#modal [data-act="open-laptop"]'); await pg.wait_for_timeout(3500)
+    ok('S2 emails arrive', await pg.evaluate("mailItems().filter(m=>!m.draft).length>0"))
+    await pg.evaluate("S.arrivalSec=0; DS().revealDone=true; renderAll()")
+    ok('P2 taskbar apps', await pg.evaluate("[...document.querySelectorAll('#taskbar [data-app]')].map(b=>b.dataset.app).join(',')==='outlook,calendar,whatsapp,facebook,phone,crm,team,tools'"))
+    ok('S8 Sunday energy 21', await pg.evaluate("energyCfg('sun').max===21"))
+    ok('S5 asleep before 7', not await pg.evaluate("place('s_l_shower',T('6:30'))"))
+    ok('S6 training after launch', not await pg.evaluate("place('s_book',T('10:30'))"))
+    ok('C5 not before arrival', not await pg.evaluate("place('s_esc4',T('9:00'))"))
+    await pg.evaluate("place('s_l_commute1',T('8:00')); place('s_l_commute2',T('17:00')); place('s_ccxp',T('19:00'))")
+    ok('C6 office-only refused at home', not await pg.evaluate("place('s_crm',T('18:30'))"))
+    ok('C6 9:00 start without car', not await pg.evaluate("place('s_crm',T('8:30'))"))
+    ok('C9 cycle in order', not await pg.evaluate("place('s_a_13',T('11:00'))"))
+    ok('C9 cycle back to back', await pg.evaluate("place('s_a_12',T('12:00')) && !place('s_a_13',T('12:40')) && place('s_a_13',T('12:30'))"))
+    ok('S4 permission reply', await pg.evaluate("place('s_permission',T('16:30')) && DS().mails.some(m=>m.id==='s_permission_ok')"))
+    ok('C17 draft goes to Sent', await pg.evaluate("(ui.app='outlook', ui.folder='sent', renderAll(), document.querySelectorAll('.ol-it').length>0)"))
+    ok('A1 Meetings folder', await pg.evaluate("(ui.folder='meetings', ui.mail='s_11', renderAll(), !!document.querySelector('.meet'))"))
+    ok('S7 Plan it in Calendar (Sunday)', await pg.evaluate("(ui.folder='inbox', ui.mail='s_esc4', renderAll(), !!document.querySelector('.ol-read .acts button'))"))
+    ok('A3 Facebook posts', await pg.evaluate("(ui.app='facebook', renderAll(), document.querySelectorAll('.fb-post').length>=8)"))
+    ok('A6 Team: 4 quotes', await pg.evaluate("(ui.app='team', ui.teamSel='nadia', renderAll(), document.querySelectorAll('.tm-q').length===4)"))
+    ok('A5 CRM sections', await pg.evaluate("(ui.app='crm', renderAll(), [...document.querySelectorAll('.crm nav button')].length>=8)"))
+    ok('A5 CRM cycle step link', await pg.evaluate("(ui.cycStep=1, ui.crm='appr', renderAll(), /Step 2/.test(document.querySelector('.cyc-open h4')?.textContent||''))"))
+    ok('A5 knowledge base 10 FAQs', await pg.evaluate("(ui.crm='kb', renderAll(), document.querySelectorAll('.faq').length===10)"))
+    ok('A4 Phone without Reminders', await pg.evaluate("(ui.app='phone', renderAll(), ![...document.querySelectorAll('[data-phone]')].some(b=>/Reminders/.test(b.textContent)))"))
+    ok('A2 WhatsApp opens', await pg.evaluate("(ui.app='whatsapp', ui.chat='g_shella', renderAll(), document.querySelectorAll('.wa-c').length>=3)"))
+    ok('TL1 budget = 24-7-groom-eat', await pg.evaluate("(ui.app='tools', ui.tool='budget', renderAll(), /sleep 7 h/.test(  document.querySelector('.tb-calc')?.textContent||''))"))
+    await pg.evaluate("ui.app='calendar'; renderAll(); closeDay(); showReport()"); await pg.wait_for_timeout(300)
+    ok('R2/R3 report equation + actual', await pg.evaluate("!!document.querySelector('#modal .eq') && !!document.querySelector('#modal .bd')"))
+    ok('R8 next-day button', await pg.evaluate("!!document.querySelector('#modal .rep-top [data-act=next-round]')"))
+    ok('P4 look-back', await pg.evaluate("(closeModal(), S.round=1, DS().briefSeen=true, DS().cqDone=true, DS().revealDone=true, DS().growSeen={m_study:true}, renderAll(), closeModal(), !!document.querySelector('[data-act=peek]'))"))
+    ok('M11 matrix hint', await pg.evaluate("(ui.app='tools', ui.tool='eisen', renderAll(), (!!document.querySelector('aside.eis-pile .ai-hint-all') && !document.querySelector('aside.tray .ai-hint-all') && !document.querySelector('.eis-hint')))"))  # rc28: the hint sits on the hand-typed task cards
+    await pg.evaluate("DS().quad.m_hala3m='q1'; ui.tool='negotiate'; ui.negFor='m_hala3m'; renderAll()"); await pg.wait_for_timeout(150)
+    await pg.evaluate('closeModal()'); await pg.click('[data-nopt="shift"]'); await pg.wait_for_timeout(200)
+    ok('TL4 day picker', await pg.evaluate("!!document.querySelector('#neg-day')"))
+    ok('P8 editor opens', await pg.evaluate("(typeof showEditor==='function')"))
+    print('\n'.join(res)); print('JS errors:', errs or 'none'); await b.close()
+asyncio.run(main())

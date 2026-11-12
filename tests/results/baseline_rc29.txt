@@ -1,0 +1,196 @@
+--- sweep
+PASS P3 brief first
+PASS P10 no rescue screen
+PASS S2 emails arrive
+PASS P2 taskbar apps
+PASS S8 Sunday energy 21
+PASS S5 asleep before 7
+PASS S6 training after launch
+PASS C5 not before arrival
+PASS C6 office-only refused at home
+PASS C6 9:00 start without car
+PASS C9 cycle in order
+PASS C9 cycle back to back
+PASS S4 permission reply
+PASS C17 draft goes to Sent
+PASS A1 Meetings folder
+PASS S7 Plan it in Calendar (Sunday)
+PASS A3 Facebook posts
+PASS A6 Team: 4 quotes
+PASS A5 CRM sections
+PASS A5 CRM cycle step link
+PASS A5 knowledge base 10 FAQs
+PASS A4 Phone without Reminders
+PASS A2 WhatsApp opens
+PASS TL1 budget = 24-7-groom-eat
+PASS R2/R3 report equation + actual
+PASS R8 next-day button
+PASS P4 look-back
+PASS M11 matrix hint
+PASS TL4 day picker
+PASS P8 editor opens
+JS errors: none
+--- mon
+eisen hint True
+green delete card True
+negotiation ['accepted', 'negotiated', 'm_x_talabat,m_hala3m_mail_ok']
+cycle rule [False, False, False]
+stats rule [False]
+report [True, True, True]
+NO ERRORS
+--- v12
+2 brief before reading False | Read Hala's note on next month's offers first — plan it before "Print & brief the new offer list".
+2 brief overlapping the note False | after it True
+1 prep / meeting ['1:30 PM+65', '2:35 PM', False]
+3 clinic ['9:10 PM', '10:10 PM', True]
+7 gap after course [False, False] | "Call the clinic — book Mom's appointment" happens during lunch, right after the call — it stays there.
+errors A none
+4 facebook ['facebook', True, True]
+4 back ['calendar', 'You stopped "2 escalated cases — ESC/7 and ESC/8" ']
+errors B none
+6 tap buttons ['Go to Nour right away', 'Note where you were in your studying, then go to Nour']
+6 note label Where did you stop in your studying?
+6 card You noted where you stopped studying — when you're back, you
+errors C none
+5 batch opened [True, '📥 Batch — 9:30 AM1 of 1']
+errors D none
+--- v13
+approvals ['9:10 AM', 'Today, 9:10 AM', '11:00 AM', 'Today, 11:00 AM']
+held {"t_buffet_lunch":["ti_fb"]}
+lunch order ['buffet:🍽️ Interruption buffet — 12:3', 'Mom call']
+clinic call ['12:55 PM', '12:30 PM+60', '12:35 PM+10', '9:10 PM']
+move clinic call False | "Call the clinic — book Mom's appointment" happens during lunch, right after the call — it stays there.
+NO ERRORS
+--- v14
+before lunch: buffet on calendar? [False, False, False, '{"t_buffet_lunch":["ti_fb"]}'] | toast None
+after lunch placed ['12:35 PM+10', True]
+lunch moved → buffet ['12:45 PM', '12:50 PM']
+NO ERRORS
+--- v15
+1 lunch length after Mom 60 | Both are on Karim's calendar now: the call during lunch, the clinic visit (60 min) tonight.
+2 phone notifications ['Talabat: 20% OFF — Hungry, Karim? Your favorite r'] | outlook ['CRM Maintenance — Next Sunday Evening'] | logged {"ti_mom":"live","ti_talabat1":"deleted","ti_it":"deleted"}
+2 phone tab shows True
+errors A none
+3 voice screen play button True
+3 playing True
+3 Ahmed voice bubble playable True
+4 after replay ['mon', True, True, ['m_coach'], '{}', 0, 'none']
+errors B none
+--- esc9cyc
+blocks t_a_12@10:00 AM+20, t_x_esc9_call@10:20 AM+30
+fill form after the call-back (10:50 AM) True None
+send + route [True, True] | gaps []
+B blocks t_b_12@11:00 AM, t_batch_t_b_12@11:15 AM | step 2 after it True ['11:17 AM', None]
+NO ERRORS
+--- yt
+step 1 True
+blocks m_b_12@1:30 PM+30, m_x_ytvideo@2:00 PM+10, m_x_refocus@2:10 PM+20
+step 2 right after the interruption (2:30 PM) True None
+step 2 with a real gap False | back to back again True
+another task inside the cycle False | gaps []
+NO ERRORS
+--- tuepath
+MON ['{"t":830,"choice":"take","kind":"good"}', 'q4', 'q4', True]
+carry flags {"hasCar":true,"patternsSkipped":true,"usedAI":true,"statsAI":true}
+TUE ['t_l_commute1 | Commute to work 🚗 | 30 | sort:false', 't_l_commute2 | Commute home 🚗 | 30 | sort:false', 't_stats | Daily Statistics Log — AI fills it | 10 | sort:true', 't_a_13 | Fill approval form with AI — RF-2055, RT-1203 | 5 | sort:true', 't_b_13 | Fill approval form with AI — RP-3410 | 5 | sort:true']
+first click Click again to confirm | tuesday still there True
+after reset ['tue', True, None, 1]
+after re-closing Sunday [0, False, 0, False]
+NO ERRORS
+--- newtasks
+in To plan [['t_webinar', True, True, '10:30 AM'], ['t_maadi', True, True, '11:00 AM']]
+maadi email URGENT Urgent — 12 warranty cards to activate today | MB | Maadi Branch <Maadi.Branch@company.com> | To: Karim.ElShazly@company.com | Today, 11:00 AM | ⏱ 40 min | Not planned yet | Hi Karim, | 12 customers called us today to activate the warranty cards of the devices they b
+webinar has optional? False
+delete card ["That frees 45 min of Karim's day.", 'Deleted — "Vendor webinar: ‘The future of call-centre headsets’" is off Karim\'s plan.']
+wrong person Mariam has the complaints and the tougher cases — warranty cards are Nadia's and Omar's main job.
+spawned ['t_x_maadi_nadia | Email Nadia: activate the 12 Maadi warranty cards before 4 PM | sort:undefined | tagmode:false']
+place email True
+report delegated/deleted ['Vendor webinar: ‘The future of call-centre headsets’ D', 'Maadi branch purchases']
+NO ERRORS
+--- ai3
+still to sort [] | tool negotiate
+after sorting AI cards → tool negotiate | placeable False Matrix done ✓ Next: negotiate the deadlines you need to, before planning the calendar.
+migrated ['m_x_statsai:undefined', 'm_a_13ai:undefined', 'm_b_13ai:undefined']
+TUE ['Daily Statistics Log — AI fills it sort:true tag:true', 'Fill approval form with AI — RF-2055, RT sort:true tag:true', 'Fill approval form with AI — RP-3410 sort:true tag:true', 'Fill approval form with AI — RF-2088 sort:false tag:false', 'Fill approval form with AI — RP-3375, RT sort:false tag:false']
+NO ERRORS
+--- audio3
+car call: playing on Answer True | play button shown False
+Ahmed voice note: playing True | play button shown ▶ in the chat
+NO ERRORS
+--- replay
+SUN before [4, 1] → after [['s_11', 's_launch'], 0, True, 'none']
+SUN emails arriving again 1
+MON morning blocks restored True | quad cleared {} | cqDone True | no brief none
+NO ERRORS
+--- tarek
+['accepted', ['Tarek (Delivery): OK — Thursday works. Thanks for flagging it early an']]
+['accepted', ['Tarek (Delivery): OK — Thursday works. Thanks for flagging it early an']]
+['accepted', ["Tarek (Delivery): I hear you're busy — everyone is. What makes this on", "Tarek (Delivery): Help me understand what's on your plate today — what", 'Tarek (Delivery): OK — Thursday works. Thanks for flagging it early an']]
+['accepted', ["Tarek (Delivery): I hear you're busy — everyone is. What makes this on", 'Tarek (Delivery): OK — Thursday works. Thanks for flagging it early an']]
+NO ERRORS
+--- lo
+carried to Monday ['Escalation ESC/4 — consumer-protection threat', 'Reply to Hala — where are we on ESC/4?', '3 escalated cases — ESC/1, ESC/2, ESC/3', 'Approval request — RF-2041, RT-1187', 'Fill approval form — RF-2041, RT-1187', 'Send forms to Hala — RF-2041, RT-1187', 'Route signed approvals — RF-2041, RT-1187', 'Approval request — RP-3392', 'Fill approval form — RP-3392', 'Send forms to Hala — RP-3392', 'Route signed approvals — RP-3392', 'Read the HR newsletter & confirm', 'Write up the launch meeting minutes', 'Approve team timesheets & leave', "Ask Hala's permission to arrive at 10:00 AM on Wednesday", "Book Thursday's new product knowledge training"]
+   inbox
+   CONSEQUENCE: The FAQ page was never reviewed. A customer followed the old 14-day re | 📅 Escalation ESC/7 — return due to website FAQ error is now
+   CONSEQUENCE: Hala didn't get your strategy on time. The Operations Managers have be | 📅 Department strategy with Hala is now on Karim's calendar 
+   CONSEQUENCE: Tarek Sabry (Delivery Manager) needs to meet you and Hala at 10:00 AM: | 📅 Meeting with Tarek (Delivery) & Hala is now on Karim's ca
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Escalation ESC/4 — consumer-protection threat | 📅 Escalation ESC/4 — consumer-protection threat is now on K
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Reply to Hala — where are we on ESC/4?" wasn' | 📅 Reply to Hala — where are we on ESC/4? is now on Karim's 
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "3 escalated cases — ESC/1, ESC/2, ESC/3" wasn | 📌 Karim doesn't have the energy to fit 3 escalated cases — 
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Approval request — RF-2041, RT-1187" wasn't d | 📌 Karim doesn't have the energy to fit Approval request — R
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Fill approval form — RF-2041, RT-1187" wasn't | 📌 Karim doesn't have the energy to fit Fill approval form —
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Send forms to Hala — RF-2041, RT-1187" wasn't | 📌 Karim doesn't have the energy to fit Send forms to Hala —
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Route signed approvals — RF-2041, RT-1187" wa | 📌 Karim doesn't have the energy to fit Route signed approva
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Approval request — RP-3392" wasn't done, so i | 📌 Karim doesn't have the energy to fit Approval request — R
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Fill approval form — RP-3392" wasn't done, so | 📌 Karim doesn't have the energy to fit Fill approval form —
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Send forms to Hala — RP-3392" wasn't done, so | 📌 Karim doesn't have the energy to fit Send forms to Hala —
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Route signed approvals — RP-3392" wasn't done | 📌 Karim doesn't have the energy to fit Route signed approva
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Read the HR newsletter & confirm" wasn't done | 📅 Read the HR newsletter & confirm is now on Karim's calend
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Write up the launch meeting minutes" wasn't d | 📌 Karim doesn't have the energy to fit Write up the launch 
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Approve team timesheets & leave" wasn't done, | 📌 Karim doesn't have the energy to fit Approve team timeshe
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Ask Hala's permission to arrive at 10:00 AM o | 📌 Karim doesn't have the energy to fit Ask Hala's permissio
+   LEFT OVER FROM SUNDAY: Left over from Sunday — "Book Thursday's new product knowledge trainin | 📌 Karim doesn't have the energy to fit Book Thursday's new 
+   CONSEQUENCE: Congratulations!! You've just added another 30 minutes of self study t | 📅 CCXP Self-Study (+30 min from yesterday) is now 1 h on Ka
+   CONSEQUENCE: Karim, I had to go into my meeting with Operations this morning withou | 📧 It's in Karim's inbox.
+   CONSEQUENCE: Dear Karim, We did not receive the approved supplies list for your dep | 📧 It's in Karim's inbox.
+   CONSEQUENCE: Karim, where is the statistics log? Hala | 📧 It's in Karim's inbox.
+   CONSEQUENCE: Dear Karim, Karim missed today&#39;s CCXP session. That was his one al | 📧 It's in Karim's inbox.
+leftover note None
+energy  ["That's everything yesterday left behind. Now plan the rest of Monday."]
+on calendar ['Escalation ESC/4 — consumer-protect @11:00 AM sort:false locked:true', 'Reply to Hala — where are we on ESC @11:30 AM sort:false locked:true', '3 escalated cases — ESC/1, ESC/2, E @tray sort:false locked:false', 'Approval request — RF-2041, RT-1187 @tray sort:false locked:false', 'Fill approval form — RF-2041, RT-11 @tray sort:false locked:false', 'Send forms to Hala — RF-2041, RT-11 @tray sort:false locked:false', 'Route signed approvals — RF-2041, R @tray sort:false locked:false', 'Approval request — RP-3392 @tray sort:false locked:false', 'Fill approval form — RP-3392 @tray sort:false locked:false', 'Send forms to Hala — RP-3392 @tray sort:false locked:false', 'Route signed approvals — RP-3392 @tray sort:false locked:false', 'Read the HR newsletter & confirm @11:40 AM sort:false locked:true', 'Write up the launch meeting minutes @tray sort:false locked:false', 'Approve team timesheets & leave @tray sort:false locked:false', "Ask Hala's permission to arrive at  @tray sort:false locked:false", "Book Thursday's new product knowled @tray sort:false locked:false"]
+stats task? [True, 'q4', True, '["m_x_statsai"]']
+MON AI ['Daily Statistics Log — let AI fill it sort:undefined', 'Fill approval form with AI — RF-2088 sort:undefined']
+move leftover mon_lo_s_esc4 False "Escalation ESC/4 — consumer-protection threat" is a consequence from yesterday — its time is fixed.
+carried to Tuesday ['Review the launch message & send to 1,000 customers', 'Enter Nasr City branch customers into the CRM', 'Mandatory Data Privacy Training', 'Department numbers — last 3 months, for Hala', '2 escalated cases — ESC/5 and ESC/6', 'Approval request — RF-2088', 'Send forms to Hala — RF-2088', 'Route signed approvals — RF-2088', 'Approval request — RP-3375, RT-1156', 'Fill approval form — RP-3375, RT-1156', 'Send forms to Hala — RP-3375, RT-1156', 'Route signed approvals — RP-3375, RT-1156']
+NO ERRORS
+--- v11_manual
+energy (no PlayStation night) [23, ['No PlayStation night, no time with your friends — just work. The guys noticed.']]
+focus tool: buffet choices left 0 | 🔕 During this task Karim won't receive calls, emails, WhatsApp messages or notifications — they wait for his interruption buffet at lunch.
+8:00 work without car [True, False] | "Daily CRM Review" can only be done at the office — the CRM and work files open from work only. Plan it after 9:00 AM (Karim can only start earlier once he has his own car).
+t_crm 9:00 ['call', 'script:4']
+t_huddle 9:15 ['slide[Handle now/Delete/Batch it]']
+t_halaoffers 9:30 ['slide[Handle now/Delete/Batch it]']
+t_esc78 11:30 []
+t_l_lunch 12:30 []
+t_a_12 15:00 ['mariam[Drop everything and go | Tell Mariam to let the | Write down where you a]', "card:Good call — Mariam tells the client you'll call him back, an"]
+t_b_12 16:30 ['call', 'script:0']
+buffets ['t_buffet_lunch@12:35 PM [ti_fb]', 't_buffet_after_t_b_12@4:45 PM [ti_mkt]'] | callback 3:20 PM
+report ['Your modes, batches and notes saved Karim 58 min.', '✓ Karim asked Mariam to let the client know he would call back in 30 m', "The recurring issues weren't reviewed on Monday — the repair-technicia"]
+errors A none
+t_a_12 11:00 ['mariam[Drop everything and go | Tell Mariam to let the | Write down where you a]', 'card:You dropped everything for Mariam and lost your place in "Ap']
+errors desk-now none
+t_a_12 11:00 ['mariam[Drop everything and go | Tell Mariam to let the | Write down where you a]', "card:You left yourself a ready-to-resume note — you're back on tr"]
+errors desk-note none
+t_huddle 9:15 ['slide[Handle now/Delete/Batch it]']
+deleted logged {"ti_it":{"kind":"deleted","mins":0,"potential":2}}
+car owner Tuesday 7:30 work [True, False, True, True] None
+errors car none
+try again: first allowed, second blocked [True, False]
+errors neg none
+--- manual_v1
+KEY asap-karim-sim-v1 | brief True
+SUN emails 2
+SUN rules [False, False, False]
+MON morning ['inbox', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq', 'cq']
+TUE manual: live bar absent True
+NO ERRORS
