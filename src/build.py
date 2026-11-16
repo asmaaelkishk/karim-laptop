@@ -7,7 +7,7 @@ The page is the shared source + the manual-only Tuesday engine + the closing tag
 LIVE is frozen at v1.2-rc21 (see archive/) and is not built here.
 """
 import hashlib, os, sys
-EXPECTED = '469e306a7fc68cfc'   # v1.2-rc29 — update after every approved change
+EXPECTED = '648c0c33a4d9b94d'   # v1.2-rc30 — update after every approved change
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'src')
 read = lambda n: open(os.path.join(SRC, n), encoding='utf-8').read()

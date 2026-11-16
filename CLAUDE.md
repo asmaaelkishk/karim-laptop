@@ -4,7 +4,7 @@ This repo is the ASAP course simulation "Karim's Laptop" (LOGIC Training & HR De
 The page participants use is `public/index.html`, built from `src/`. Vercel serves `public/`.
 
 ## Before changing anything
-1. `python3 src/build.py --check` must print fingerprint **469e306a7fc68cfc** (v1.2-rc29).
+1. `python3 src/build.py --check` must print fingerprint **648c0c33a4d9b94d** (v1.2-rc30).
    If it doesn't, stop and tell the owner.
 2. Never edit `public/index.html` by hand — edit `src/` and rebuild.
 
@@ -17,7 +17,7 @@ The page participants use is `public/index.html`, built from `src/`. Vercel serv
   The regression must stay identical to `tests/results/baseline_rc29.txt` except for differences you can explain as the requested change.
   Never claim a result you didn't test.
 - Keep `docs/` up to date: add the change to the Master Feature Inventory and the project reference
-  (number it after 119, scope MANUAL), and update `EXPECTED` in `src/build.py` and the fingerprint in this file.
+  (number it after 120, scope MANUAL), and update `EXPECTED` in `src/build.py` and the fingerprint in this file.
 - Report each change as: what changed · implemented · tested · issues · anything unverified.
 
 ## Where things are

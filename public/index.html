@@ -5402,6 +5402,32 @@ renderAll = function () { const r = _renderAll28.apply(this, arguments); try { a
 if (ytCleanup()) save();
 
 (function () { const c = document.createElement('style'); c.textContent = '.ai-hint-all{position:sticky;bottom:0;z-index:2;margin:10px 0 0;box-shadow:0 -6px 14px rgba(255,255,255,.9);padding:12px 14px;border-radius:10px;background:#FFF6E0;border:1px solid #F2C94C;color:#5C4400;font-size:14px;line-height:1.5}'; document.head.appendChild(c); })();
+
+/* ======================= v1.2 (rc30): facilitator — delete a task left from yesterday ======================= */
+const _carryOf30 = carryOf;
+carryOf = function (d) { const c = _carryOf30.apply(this, arguments); const del = ((S.days || {})[d] || {}).loDel; if (!del || !c.tasks) return c;
+  return { ...c, tasks: c.tasks.filter(t => !del[t.id]), cards: (c.cards || []).filter(k => !(k.task && del[k.task])) }; };
+function loCarried(d) { return ((_carryOf30(d) || {}).tasks || []).map(applyEdit).filter(t => schedulable(t)); }
+function loGroup(t, d) { const all = loCarried(d); return t.cycle ? all.filter(x => x.cycle === t.cycle) : [t]; } // an approval cycle goes together
+function loDelete(id, d) { const ds = DS(d), t = loCarried(d).find(x => x.id === id); if (!t) return; ds.loDel = ds.loDel || {};
+  loGroup(t, d).forEach(x => { ds.loDel[x.id] = true; delete ds.blocks[x.id]; if (ds.loWait) delete ds.loWait[x.id]; }); save(); renderAll(); }
+function loRestore(id, d) { const ds = DS(d), t = loCarried(d).find(x => x.id === id); if (!t || !ds.loDel) return; loGroup(t, d).forEach(x => { delete ds.loDel[x.id]; }); save(); renderAll(); }
+function loSection() { const d = D(), ds = DS(d), list = loCarried(d); if (!list.length) return '';
+  const del = ds.loDel || {}, seenCyc = new Set();
+  const rows = list.filter(t => !(t.cycle && seenCyc.has(t.cycle)) && (t.cycle ? seenCyc.add(t.cycle) : true)).map(t => { const gone = !!del[t.id], g = loGroup(t, d);
+    const name = g.length > 1 ? (t.title.replace(/^[^—–-]*[—–-]\s*/, '') ? 'Approval cycle (' + g.length + ' steps) — ' + esc(t.title) : esc(t.title)) : esc(t.title);
+    return `<div class="lo-row ${gone ? 'gone' : ''}"><span><b>${name}</b><small>${t.leftover ? 'Left over' : 'Consequence'} · ${fmtDur(g.reduce((m, x) => m + (x.dur || 0), 0))}${gone ? ' · deleted' : ''}</small></span>${gone ? `<button class="btn" data-act="lo-restore" data-id="${t.id}">Restore</button>` : `<button class="btn danger" data-act="lo-del" data-id="${t.id}">Delete</button>`}</div>`; }).join('');
+  return `<div class="lo-fac"><h3>Tasks left from ${esc(DAY_META[WEEK[WEEK.indexOf(d) - 1]] ? DAY_META[WEEK[WEEK.indexOf(d) - 1]].label : 'yesterday')} — ${esc(DAY_META[d].label)}</h3><p class="muted">Delete a task Karim no longer has to do today. It leaves To plan, the calendar, the morning cards and the report. Restore brings it back.</p>${rows}</div>`; }
+function loInject() { const box = document.querySelector('#modal .fac, #modal [data-act="replay-plan"]'); const rp = document.querySelector('#modal [data-act="replay-plan"]'); if (!rp) return;
+  const old = document.querySelector('#modal .lo-fac'); if (old) old.remove(); const html = loSection(); if (!html) return;
+  const host = rp.closest('.fld') || rp.parentElement; host.insertAdjacentHTML('afterend', html); }
+const _showFac30 = showFac;
+showFac = function () { const r = _showFac30.apply(this, arguments); try { loInject(); } catch (e) { } return r; };
+document.addEventListener('click', e => { const a = e.target.closest('[data-act="lo-del"],[data-act="lo-restore"]'); if (!a) return; e.stopImmediatePropagation();
+  if (a.dataset.act === 'lo-del') { if (!a.dataset.armed) { a.dataset.armed = '1'; a.textContent = 'Click again to delete'; return; } loDelete(a.dataset.id, D()); toast('Deleted from today — it no longer counts for Karim.', 'ok'); }
+  else loRestore(a.dataset.id, D());
+  loInject(); }, true);
+(function () { const c = document.createElement('style'); c.textContent = '.lo-fac{grid-column:1 / -1;margin:14px 0;padding:12px 14px;border:1px solid #E3E8F0;border-radius:10px;background:#FAFBFD}.lo-fac h3{margin:0 0 4px;font-size:15px}.lo-fac .muted{margin:0 0 8px;font-size:13px}.lo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 0;border-top:1px solid #EEF1F6}.lo-row span{display:flex;flex-direction:column}.lo-row small{color:#5B6B85;font-size:12px}.lo-row.gone b{text-decoration:line-through;color:#8A94A6}.btn.danger{border-color:#E5A3A3;color:#B42318;background:#fff}'; document.head.appendChild(c); })();
 /* =========================================================
    MANUAL TUESDAY — interruptions arrive while planning:
    placing a task on the calendar fires its interruption (same set-up, same modes, buffets and batches).

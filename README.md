@@ -3,7 +3,7 @@
 A single-page, offline HTML simulation of a Customer Service Team Lead's laptop
 (Karim, Nile Home Appliances), used in the ASAP course by LOGIC Training & HR Development.
 Participants plan Karim's Sunday–Wednesday while emails, WhatsApp messages, calls and
-interruptions arrive. Version **1.2-rc29** · fingerprint **469e306a7fc68cfc**.
+interruptions arrive. Version **1.2-rc30** · fingerprint **648c0c33a4d9b94d**.
 
 ## What's in this folder
 
@@ -12,7 +12,7 @@ interruptions arrive. Version **1.2-rc29** · fingerprint **469e306a7fc68cfc**.
 | `public/index.html` | **The simulation** — the only file Vercel serves. Built from `src/`. |
 | `src/` | Shared source + manual interruption engine + `build.py` |
 | `tests/` | Regression suite (Sunday–Tuesday) and feature checks, with the rc29 baseline |
-| `docs/` | Master Feature Inventory (v1.2-rc29), project reference, development instructions |
+| `docs/` | Master Feature Inventory (v1.2-rc30), project reference, development instructions |
 | `archive/` | LIVE version, frozen at v1.2-rc21 — kept for the record, not deployed |
 | `CLAUDE.md` | Rules Claude Code follows when it works in this repo |
 | `vercel.json` | Tells Vercel to serve `public/` |
@@ -25,7 +25,7 @@ interruptions arrive. Version **1.2-rc29** · fingerprint **469e306a7fc68cfc**.
 
    > Read CLAUDE.md. Run `python3 src/build.py --check` and confirm the fingerprint.
    > Then initialise a git repository, commit everything with the message
-   > "Karim's Laptop v1.2-rc29", create a **private** GitHub repository called `karim-laptop`
+   > "Karim's Laptop v1.2-rc30", create a **private** GitHub repository called `karim-laptop`
    > and push the main branch to it.
 
    Claude Code uses `git` and the GitHub CLI (`gh`). If `gh` isn't signed in, it will ask you to run
@@ -46,7 +46,7 @@ Keep the GitHub repository **private**: the docs contain the facilitator PIN.
 # edit src/ … then:
 python3 src/build.py          # rebuilds public/index.html and prints the fingerprint
 python3 tests/run_suite.py    # regression + feature checks (about 15 minutes)
-git commit -am "Change 120: …" && git push
+git commit -am "Change 121: …" && git push
 ```
 
 Tests need Python 3.10+ and Playwright once:

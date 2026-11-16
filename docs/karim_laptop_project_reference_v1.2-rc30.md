@@ -1,4 +1,4 @@
-# Karim's Laptop — project reference (status at v1.2-rc29, 11 Nov 2026)
+# Karim's Laptop — project reference (status at v1.2-rc30, 11 Nov 2026)
 
 ## Binding development rules (unchanged)
 - Build forward, never regress. Never remove or change an approved feature without explicit permission; smallest targeted change; impact check first; if unsure, ask.
@@ -10,12 +10,12 @@
 
 ## Status
 - Version 1.1 (changes 1–35): approved and locked 29 Oct 2026.
-- Version 1.2 (changes 36–119, Wednesday · Round 4 · Perform, plus change 86 on Monday's negotiation): release candidate rc29, pending approval.
+- Version 1.2 (changes 36–120, Wednesday · Round 4 · Perform, plus change 86 on Monday's negotiation): release candidate rc30, pending approval.
 - LIVE: frozen at v1.2-rc21 (not used). The Wednesday trial file is not used either — every rule built in it is part of the normal simulation.
 - Files (attach these when development continues):
-  - karim_laptop_v1.2-rc29_package.zip — everything: shared source + build script (src/), all tests and results, the inventory, this reference, LIVE frozen at rc21, Version 1.1 for recovery
-  - karim_laptop_simulation_v1.2-rc29.html — the simulation (Sunday → Wednesday), the file to publish on Vercel
-- How to resume: unzip the package, rebuild with `python3 src/build.py <out>/`, and confirm the manual fingerprint is 469e306a7fc68cfc before changing anything.
+  - karim-laptop.zip (GitHub repo) — everything: shared source + build script (src/), all tests and results, the inventory, this reference, LIVE frozen at rc21, Version 1.1 for recovery
+  - karim_laptop_simulation_v1.2-rc30.html — the simulation (Sunday → Wednesday), the file to publish on Vercel
+- How to resume: unzip the package, rebuild with `python3 src/build.py <out>/`, and confirm the manual fingerprint is 648c0c33a4d9b94d before changing anything.
 
 ## Changes to approved days made in 1.2 (all requested by you)
 - G9: leftovers that don't fit Karim's energy wait in To plan (day stays playable).
@@ -51,7 +51,7 @@
 - 94 Tuesday offers note + Print & brief are Q2: no deadline, not negotiable.
 - Test setup: tests expect Chromium at /opt/pw-browsers/chromium-1194/chrome-linux/chrome (link it to the installed Chromium if missing).
 
-## Changes in rc29 (95–107, your second play-through)
+## Changes in rc30 (95–107, your second play-through)
 - 95 sleep 7 h in all equations · 96 slides 1 h 15 (20+20+10+25) · 97 VIP 2 h, Tarek 3 h, notes fixed (VIP hint: part today, Mariam and the CRM lists) · 98 IT email 5 min · 99 thought "= 35 min"
 - 100 done emails for delegated work = green GOOD NEWS · 101 report counts tasks planned with a problem as handled and names them
 - 102 one held/batch block per approval cycle · 103 batch choice remembered · 104 Mom: dialogue + clinic plan card (10 / 15 / 30 / 15, pharmacy) · 105 split keeps the first part today · 106 Tuesday batch list offers the lunch buffet · 107 Wednesday FB tag from Sherif Nabil
@@ -65,6 +65,8 @@
 - 111 coaching card explains it moves later when pushed · 112 Undo removes Youssef's interruption; refocus never carried · 113 VIP rest Thursday or later (supplier quotes, two working days) · 114 planned-late tasks are not leftovers · 115 patterns review no deadline · 116 delegation confirmations silent · 117 (replaced by 119) · 118 sound: embedded first, retry, Play; "Show as text" for every recording
 
 - 119 Monday AI hint: one note in the Eisenhower tool, pinned below all tasks in "To sort"
+
+- 120 Facilitator panel: delete (or restore) any task carried from yesterday
 
 ## Energy redesign — agreed, not built yet
 Bedtime midnight (12:10 grace); wake 7:00 every day (Monday 6:55 desk alarm kept); energy never closes the day (Option B); bar adapts to the day's work; every task 1 point; negotiation costs only through its reply email; plain deletion free; sleep 7 h in all equations (Sunday: overcommitted by 2 h 40 instead of 3 h 40). To decide: "energy borrowed" display, top-up up to the next meal.

@@ -11,7 +11,7 @@ import os, subprocess, sys, difflib
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 PAGE = 'file://' + os.path.join(ROOT, 'public', 'index.html')
 SUITE = 'sweep mon v12 v13 v14 v15 esc9cyc yt tuepath newtasks ai3 audio3 replay tarek lo v11_manual manual_v1'.split()
-CHECKS = 'rc23 rc23b rc24 rc28 meet'.split()
+CHECKS = 'rc23 rc23b rc24 rc28 meet lofac'.split()
 def run(t):
     r = subprocess.run([sys.executable, os.path.join(HERE, t + '.py'), PAGE], capture_output=True, text=True, timeout=900, cwd=HERE)
     return r.stdout + r.stderr
